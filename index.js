@@ -17,7 +17,9 @@ const createHiddenWindow = (filePath, debug) => {
     // window can use `require`. See also
     // https://github.com/electron/electron/issues/17241.
     webPreferences: {
-      nodeIntegration: true,
+        nodeIntegration: true,
+        enableRemoteModule: true,
+        contextIsolation: false,
     },
     // This is extremely useful when something with the IPC goes
     // wrong.
@@ -124,4 +126,3 @@ exports.onReceiveData = (ipcRenderer, processNameOuter, func) => {
     processNameOuter === processName && func(values);
   });
 };
-
